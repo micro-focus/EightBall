@@ -1,0 +1,18 @@
+plugins {
+    id 'application'
+}
+
+apply plugin: 'application'
+apply plugin: 'java'
+
+mainClassName = 'com.fortify.samples.basic.EightBall'
+
+// tag::repositories[]
+repositories { 
+    mavenCentral() 
+}
+// end::repositories[]
+
+// tag::dependencies[]
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
