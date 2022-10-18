@@ -1,18 +1,23 @@
-plugins {
-    id 'application'
-}
-
-apply plugin: 'application'
 apply plugin: 'java'
+sourceCompatibility = '1.11'
+targetCompatibility = '1.11'
 
-mainClassName = 'com.fortify.samples.basic.EightBall'
-
-// tag::repositories[]
 repositories { 
-    mavenCentral() 
+    mavenCentral() {
+        content {
+            excludeGroupByRegex "javax\\.sql.*"
+        }
+    }
+    maven {
+        url "https://mogwai.sourceforge.net/repository/maven2"
+        content {
+            includeGroup "javax.sql"
+        }
+    }
 }
-// end::repositories[]
 
-// tag::dependencies[]
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+dependencies {
+    implementation 'struts:struts:1.1'
+    implementation 'javax.servlet:javax.servlet-api:3.0.1'
+    implementation 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.2-b02'
+}
