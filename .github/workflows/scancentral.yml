@@ -62,10 +62,10 @@ jobs:
     needs: [Fortify-SAST]
     steps:
       # Wait for SAST scan to complete
-      - name: Sleep for 180 seconds
+      - name: Sleep for 100 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '240s'
+          time: '100s'
 
       # Pull SAST issues from Fortify SSC and generate GitHub-optimized SARIF output
       - name: Export Results
