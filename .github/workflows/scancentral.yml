@@ -2,11 +2,11 @@ name: Fortify ScanCentral SAST Scan
 on:
   workflow_dispatch:
   # Master or main branch that you want to trigger this workflow for
-  # push:
-  #   branches: [main]
-  # pull_request:
+  push:
+    branches: [main]
+  pull_request:
     # The branches below must be a subset of the branches above
-  #   branches: [main]
+    branches: [main]
 
 jobs:                                                  
   Fortify-SAST:
@@ -57,15 +57,11 @@ jobs:
            name: scancentral-logs
            path: ~/.fortify/scancentral/log
 
-  Import-SSC-SAST:
-    runs-on: ubuntu-latest
-    needs: [Fortify-SAST]
-    steps:
       # Wait for SAST scan to complete
-      - name: Sleep for 100 seconds
+      - name: Sleep for 150 seconds
         uses: jakejarvis/wait-action@master
         with:
-          time: '100s'
+          time: '150s'
 
       # Pull SAST issues from Fortify SSC and generate GitHub-optimized SARIF output
       - name: Export Results
